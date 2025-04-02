@@ -20,9 +20,9 @@ public class CatalogItemListPagedEndpoint : IEndpoint<IResult, ListPagedCatalogI
 {
     private readonly IUriComposer _uriComposer;
     private readonly IMapper _mapper;
-    private readonly ILogger _logger;
+    private readonly ILogger<CatalogItemListPagedEndpoint> _logger;
 
-    public CatalogItemListPagedEndpoint(IUriComposer uriComposer, IMapper mapper, ILogger logger)
+    public CatalogItemListPagedEndpoint(IUriComposer uriComposer, IMapper mapper, ILogger<CatalogItemListPagedEndpoint> logger)
     {
         _uriComposer = uriComposer;
         _mapper = mapper;
