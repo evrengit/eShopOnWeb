@@ -6,7 +6,7 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
     <Nullable>enable</Nullable>
-    <ApplicationInsightsResourceId>/subscriptions/aa3b4517-5141-4ecb-9b7b-fa806f6c5351/resourceGroups/my-resource-group-east-us-2/providers/microsoft.insights/components/my1010112web-app-1</ApplicationInsightsResourceId>
+    <ApplicationInsightsResourceId>/subscriptions/aa3b4517-5141-4ecb-9b7b-fa806f6c5351/resourceGroups/my-resource-group-east-us-3/providers/microsoft.insights/components/my1010113web-app-1-appinsight</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
