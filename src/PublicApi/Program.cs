@@ -125,12 +125,11 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.Configure<Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration>(config =>
 {
     config.SetAzureTokenCredential(new DefaultAzureCredential());
-    config.TelemetryChannel.DeveloperMode = false;
 });
 
 builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
 {
-    ConnectionString = "06e077e5-fe11-4f87-a09a-7053ca0bfacb"
+    ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]
 });
 
 var app = builder.Build();
