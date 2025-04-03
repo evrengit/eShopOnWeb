@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -80,7 +81,7 @@ public class CatalogItemListPagedEndpoint : IEndpoint<IResult, ListPagedCatalogI
         }
         catch (Exception ex)
         {
-            var telemetryClient = new TelemetryClient();
+            var telemetryClient = new TelemetryClient(TelemetryConfiguration.CreateDefault());
             telemetryClient.TrackException(ex);
             throw;
         }
