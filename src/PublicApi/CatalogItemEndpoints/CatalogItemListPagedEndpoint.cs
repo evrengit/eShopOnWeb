@@ -45,14 +45,7 @@ public class CatalogItemListPagedEndpoint : IEndpoint<IResult, ListPagedCatalogI
 
     public async Task<IResult> HandleAsync(ListPagedCatalogItemRequest request, IRepository<CatalogItem> itemRepository)
     {
-        try
-        {
-            throw new Exception("Cannot move further");
-        }
-        catch (Exception ex)
-        {
-            _telemetryClient.TrackException(ex);
-        }
+     
 
         await Task.Delay(1000);
         var response = new ListPagedCatalogItemResponse(request.CorrelationId());
@@ -83,6 +76,17 @@ public class CatalogItemListPagedEndpoint : IEndpoint<IResult, ListPagedCatalogI
             response.PageCount = totalItems > 0 ? 1 : 0;
         }
 
-        return Results.Ok(response);
+            throw new Exception("Cannot move further");
+       /*    try
+        {
+        }
+        catch (Exception ex)
+        {
+            _telemetryClient.TrackException(ex);
+             
+        }
+
+*/
+       return Results.Ok(response);
     }
 }
