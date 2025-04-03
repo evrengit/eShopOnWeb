@@ -130,7 +130,7 @@ builder.Services.Configure<Microsoft.ApplicationInsights.Extensibility.Telemetry
 
 builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
 {
-    ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]
+    ConnectionString = "06e077e5-fe11-4f87-a09a-7053ca0bfacb"
 });
 
 var app = builder.Build();
