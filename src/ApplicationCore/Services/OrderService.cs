@@ -10,6 +10,7 @@ using Microsoft.eShopWeb.ApplicationCore.Entities.BasketAggregate;
 using Microsoft.eShopWeb.ApplicationCore.Entities.OrderAggregate;
 using Microsoft.eShopWeb.ApplicationCore.Interfaces;
 using Microsoft.eShopWeb.ApplicationCore.Specifications;
+using Microsoft.Extensions.Configuration;
 
 namespace Microsoft.eShopWeb.ApplicationCore.Services;
 
@@ -17,16 +18,18 @@ public class OrderService : IOrderService
 {
     private readonly IRepository<Order> _orderRepository;
     private readonly IUriComposer _uriComposer;
+    private readonly IConfiguration _configuration;
     private readonly IRepository<Basket> _basketRepository;
     private readonly IRepository<CatalogItem> _itemRepository;
 
     public OrderService(IRepository<Basket> basketRepository,
         IRepository<CatalogItem> itemRepository,
         IRepository<Order> orderRepository,
-        IUriComposer uriComposer)
+        IUriComposer uriComposer, IConfiguration configuration)
     {
         _orderRepository = orderRepository;
         _uriComposer = uriComposer;
+        _configuration = configuration;
         _basketRepository = basketRepository;
         _itemRepository = itemRepository;
     }
@@ -58,11 +61,9 @@ public class OrderService : IOrderService
             ReferenceHandler = ReferenceHandler.Preserve
         });
      
-        HardcodedFunctionCaller hardcodedFunctionCaller = new HardcodedFunctionCaller();
+        HardcodedFunctionCaller hardcodedFunctionCaller = new HardcodedFunctionCaller(_configuration);
         var result = await hardcodedFunctionCaller.CallOrderItemsReserverAsync(serializedOrderItems);
 
-
-        throw new Exception("FUNCTION RESULT " +result);
 
         // use azure func here to send order to OrderItemsReserver  service
         /*  var orderItemsReserver = new OrderItemsReserver();
