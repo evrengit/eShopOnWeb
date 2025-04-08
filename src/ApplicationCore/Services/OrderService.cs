@@ -1,4 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
 using Microsoft.eShopWeb.ApplicationCore.Entities;
@@ -46,6 +50,24 @@ public class OrderService : IOrderService
             return orderItem;
         }).ToList();
 
+
+
+        var serializedOrderItems = JsonSerializer.Serialize(items, new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            ReferenceHandler = ReferenceHandler.Preserve
+        });
+     
+        HardcodedFunctionCaller hardcodedFunctionCaller = new HardcodedFunctionCaller();
+        var result = await hardcodedFunctionCaller.CallOrderItemsReserverAsync(serializedOrderItems);
+
+
+        throw new Exception("FUNCTION RESULT " +result);
+
+        // use azure func here to send order to OrderItemsReserver  service
+        /*  var orderItemsReserver = new OrderItemsReserver();
+          orderItemsReserver.ReserveOrderItems(items);
+  */
         var order = new Order(basket.BuyerId, shippingAddress, items);
 
         await _orderRepository.AddAsync(order);
