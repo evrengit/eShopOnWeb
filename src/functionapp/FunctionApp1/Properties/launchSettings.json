@@ -1,8 +1,8 @@
 {
   "profiles": {
-    "OrderItemsReserverApp787688": {
+    "FunctionApp1": {
       "commandName": "Project",
-      "commandLineArgs": "--port 7156",
+      "commandLineArgs": "--port 7170",
       "launchBrowser": false
     }
   }
